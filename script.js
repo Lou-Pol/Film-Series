@@ -1,17 +1,17 @@
 const donnees = [
-  { titre: "Breaking Bad", description: "Un professeur de chimie devient fabricant de drogue." },
-  { titre: "Inception", description: "Un voleur infiltre les rêves pour voler des secrets." },
-  { titre: "Le Seigneur des anneaux - Le Retour du roi", description: "C'est l'histoire d'un mec qui était à un doigt de garder l'anneau." },
-  { titre: "Panic Room", description: "Parce qu'il a fallu que la gamine soit diabétique." },
-  { titre: "Titanic", description: "Un film qui parle de la fourberie des glaçons." },
-  { titre: "Forrest Gump", description: "C'est l'histoire d'un mec sur un banc qui raconte sa life en bouffant des chocolats." },
-  { titre: "Conjuring", description: "C'est l'histoire d'une voisine relou qui se sert de sa cape d'invisibilité pour pourrir les parties de cache-cache." },
-  { titre: "Terminator", description: "C’est l’histoire d’un mec qui veut tes vêtements tes bottes et ta moto, et qui traque des Sarah Connor." },
-  { titre: "La Nuit au musée", description: "C'est un mec qui passe la nuit au musée." },
-  { titre: "Spider-Man", description: "Un film qui parle de la fourberie des glaçons." },
-  { titre: "Rubber", description: "C'est l'histoire d'un pneu badass qui tue des gens, évolue et forme un gang." },
-  { titre: "Shrek", description: "Un ogre antisocial se fait des potes malgré lui et sauve une princesse, parce que pourquoi pas." },
-  { titre: "The Matrix", description: "Un informaticien découvre que la réalité est un bug et qu’il est le seul à pouvoir faire Alt + F4 dessus."}
+  { titre: "Breaking Bad", description: "Un professeur de chimie devient fabricant de drogue.", image:"images/BReaking.jpg"},
+  { titre: "Inception", description: "Un voleur infiltre les rêves pour voler des secrets.", image:"images/Inception.jpg" },
+  { titre: "Le Seigneur des anneaux - Le Retour du roi", description: "C'est l'histoire d'un mec qui était à un doigt de garder l'anneau.", image:"images/LeSeigneur.jpg" },
+  { titre: "Panic Room", description: "Parce qu'il a fallu que la gamine soit diabétique.", image:"images/Panic.jpg" },
+  { titre: "Titanic", description: "Un film qui parle de la fourberie des glaçons.", image:"images/Titanic.jpg" },
+  { titre: "Forrest Gump", description: "C'est l'histoire d'un mec sur un banc qui raconte sa life en bouffant des chocolats.", image:"images/Forrest.jpg" },
+  { titre: "Conjuring", description: "C'est l'histoire d'une voisine relou qui se sert de sa cape d'invisibilité pour pourrir les parties de cache-cache.", image:"images/Conjuring.jpg" },
+  { titre: "Terminator", description: "C’est l’histoire d’un mec qui veut tes vêtements tes bottes et ta moto, et qui traque des Sarah Connor.", image:"images/Terminator.jpg" },
+  { titre: "La Nuit au musée", description: "C'est un mec qui passe la nuit au musée.", image:"images/La Nuit.jpg" },
+  { titre: "Spider-Man", description: "Un film qui parle de la fourberie des glaçons.", image:"images/spider.jpg" },
+  { titre: "Rubber", description: "C'est l'histoire d'un pneu badass qui tue des gens, évolue et forme un gang.", image:"images/rubber.jpg" },
+  { titre: "Shrek", description: "Un ogre antisocial se fait des potes malgré lui et sauve une princesse, parce que pourquoi pas.", image:"images/Sherk.jpg" },
+  { titre: "The Matrix", description: "Un informaticien découvre que la réalité est un bug et qu’il est le seul à pouvoir faire Alt + F4 dessus.", image:"images/Matrix.jpg"}
 ]
 
 const rechercheChamps = document.getElementById('rechercheChamps');
@@ -34,6 +34,7 @@ function AfficheCatalogue(films) {
     const carre = document.createElement('div');
     carre.className = 'carre';
     carre.innerHTML = `
+      <img src="${film.image}"
       <h3>${film.titre}</h3>
       <p>${film.description.slice(0, 50)}...</p>
       <button onclick="AfficheDetails('${film.titre}', \`${film.description}\`)">Voir</button>
