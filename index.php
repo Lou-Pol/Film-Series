@@ -18,6 +18,9 @@
     <div class="banner">
       <h2>Bienvenue sur Mon Ciné</h2>
       <p>Découvrez votre prochain film ou série préféré !</p>
+      <?php
+            echo "Aujourd'hui, nous sommes le " . date('d/m/Y') . ".";
+      ?>
     </div>
   </header>
 
