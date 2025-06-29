@@ -1,52 +1,49 @@
 <?php
-require_once 'database.php'; // Assuming your DB connection is in this file
-
-/*
-// Uncomment to test creating a user statically on page load
-try {
-    $stmt = $db->prepare("INSERT INTO Utilisateur (username, email, password) VALUES (?, ?, ?)");
-    $success = $stmt->execute(['testuser', 'test@example.com', password_hash('testpass', PASSWORD_DEFAULT)]);
-    if ($success) {
-        echo "Utilisateur ajouté avec succès (test statique).";
-    } else {
-        echo "Échec de l'insertion test.";
-    }
-} catch (PDOException $e) {
-    echo "Erreur PDO (test) : " . $e->getMessage();
-}
-*/
+require_once 'database.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = $_POST['username'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $identifiant = $_POST['identifiant'] ?? '';
+    $mot_de_passe = $_POST['mot_de_passe'] ?? '';
 
-    if (!empty($username) && !empty($email) && !empty($password)) 
-    {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    if (!empty($identifiant) && !empty($mot_de_passe)) {
+        $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+
         try {
-            $stmt = $db->prepare("INSERT INTO Utilisateur (username, email, password) VALUES (?, ?, ?)");
-            $success = $stmt->execute([$username, $email, $hashedPassword]);
+            $requete = $db->prepare("INSERT INTO Utilisateur (Identifiant, MotDePasse) VALUES (?, ?)");
+            $succès = $requete->execute([$identifiant, $mot_de_passe_hash]);
 
-            if ($success) {
-                echo "Utilisateur inscrit avec succès.";
+            if ($succès) {
+                echo "Utilisateur inscrit";
             } else {
-                $errorInfo = $stmt->errorInfo();
-                echo "Erreur lors de l'inscription (échec de l'exécution) : " . implode(" | ", $errorInfo);
+                echo "Échec de l'inscription.";
             }
-        } catch (PDOException $e) {
-            echo "Erreur PDO : " . $e->getMessage();
+        } catch (PDOException $erreur) {
+            echo "Erreur PDO : " . $erreur->getMessage();
         }
     } else {
-        echo "Tous les champs sont requis.";
+        echo "Les champs sont obligatoires.";
     }
 }
-
-/*
-// Debug: display list of users
-echo "<h2>Utilisateurs enregistrés :</h2>";
-foreach ($db->query("SELECT id, username, email FROM Utilisateur") as $row) {
-    echo "ID: {$row['id']} | Username: {$row['username']} | Email: {$row['email']}<br>";
-}
-*/
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscription</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-formulaire">
+
+  <div class="formulaire-container">
+    <h2>Créer un compte</h2>
+    <form method="post" action="register.php">
+      <input type="text" name="identifiant" placeholder="Identifiant" required>
+      <input type="password" name="mot_de_passe" placeholder="Mot de passe" required>
+      <input type="submit" value="S'inscrire">
+    </form>
+    <p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
+  </div>
+
+</body>
+</html>

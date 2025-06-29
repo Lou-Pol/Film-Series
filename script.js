@@ -7,6 +7,7 @@ const modalDescription = document.getElementById("modalDescription");
 const modaleFermee = document.getElementById("modaleFermee");
 const pagination = document.getElementById("pagination");
 
+
 const filtreType = document.createElement("select");
 const filtreAnnee = document.createElement("input");
 
@@ -112,6 +113,7 @@ async function voirDetails(imdbID) {
     `;
 
     modale.classList.remove("hidden");
+    document.getElementById("champOeuvreId").value = imdbID;
   } catch (err) {
     console.error("Erreur lors du chargement des détails:", err);
   }
