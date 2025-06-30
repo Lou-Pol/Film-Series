@@ -50,6 +50,8 @@
               <input type="hidden" name="temps" id="champTemps" />
               <input type="hidden" name="type" id="champType" />
               <input type="hidden" name="pays" id="champPays" />
+              <input type="hidden" name="affiche" id="champAffiche">
+              <input type="hidden" name="description" id="champDescription">
               <button type="submit" id="boutonFavori">Ajouter / Retirer des favoris</button>
         </form>
 

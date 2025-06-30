@@ -117,6 +117,9 @@ async function voirDetails(imdbID) {
     document.getElementById("champTemps").value = film.Runtime;
     document.getElementById("champType").value = film.Type;
     document.getElementById("champPays").value = film.Country;
+    document.getElementById("champAffiche").value = film.Poster;
+    document.getElementById("champDescription").value = film.Plot;
+    
 
     modale.classList.remove("hidden");
   } catch (err) {

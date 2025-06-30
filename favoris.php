@@ -15,9 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'], $_POST['anne
     $annee = trim($_POST['annee']);
     $temps = trim($_POST['temps']);
     $type = trim($_POST['type']); 
-    $pays = isset($_POST['pays']) ? trim($_POST['pays']) : '';
+    $pays = trim($_POST['pays']) ;
+    $affiche = $_POST['affiche'] ;
+    $description = $_POST['description'];
 
-    // Vérifie si existe déjà
+    // verif si existe déjà
     $stmt = $db->prepare("SELECT Id FROM Oeuvre WHERE Titre = ? AND Annee = ? AND TypeOeuvre = ?");
     $stmt->execute([$titre, $annee, $type]);
     $oeuvre = $stmt->fetch();
@@ -27,8 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'], $_POST['anne
     } 
     else {
         
-        $insert = $db->prepare("INSERT INTO Oeuvre (Titre, Annee, Temps, TypeOeuvre, Pays) VALUES (?, ?, ?, ?, ?)");
-        $insert->execute([$titre, $annee, $temps, $type, $pays]); 
+        $insert = $db->prepare("INSERT INTO Oeuvre (Titre, Annee, Temps, Description, Affiche, TypeOeuvre, Pays)
+                                               VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $insert->execute([$titre, $annee, $temps, $description, $affiche, $type, $pays]); 
 
         $id_oeuvre = $db->lastInsertId();
     }
@@ -83,7 +86,9 @@ $favoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <input type="hidden" name="annee" value="<?= htmlspecialchars($oeuvre['Annee']) ?>">
           <input type="hidden" name="temps" value="<?= htmlspecialchars($oeuvre['Temps']) ?>">
           <input type="hidden" name="type" value="<?= htmlspecialchars($oeuvre['TypeOeuvre']) ?>">
-            <input type="hidden" name="pays" value="<?= htmlspecialchars($oeuvre['Pays']) ?>">
+          <input type="hidden" name="pays" value="<?= htmlspecialchars($oeuvre['Pays']) ?>">
+          <input type="hidden" name="affiche" value="<?= htmlspecialchars($oeuvre['Affiche']) ?>">
+          <input type="hidden" name="description" value="<?= htmlspecialchars($oeuvre['Description']) ?>">
           <button type="submit">Retirer</button>
         </form>
       </div>
