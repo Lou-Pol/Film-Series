@@ -45,9 +45,14 @@
 
       <?php if (isset($_SESSION['utilisateur_id'])): ?>
         <form method="post" action="favoris.php" id="formulaireFavori">
-          <input type="hidden" name="id_oeuvre" id="champOeuvreId" />
-          <button type="submit" id="boutonFavori">Ajouter / Retirer des favoris</button>
+              <input type="hidden" name="titre" id="champTitre" />
+              <input type="hidden" name="annee" id="champAnnee" />
+              <input type="hidden" name="temps" id="champTemps" />
+              <input type="hidden" name="type" id="champType" />
+              <input type="hidden" name="pays" id="champPays" />
+              <button type="submit" id="boutonFavori">Ajouter / Retirer des favoris</button>
         </form>
+
       <?php endif; ?>
 
       <button id="modaleFermee" class="close-button">Fermer</button>

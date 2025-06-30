@@ -112,12 +112,18 @@ async function voirDetails(imdbID) {
       <strong>Synopsis :</strong> ${film.Plot}
     `;
 
+    document.getElementById("champTitre").value = film.Title;
+    document.getElementById("champAnnee").value = film.Year;
+    document.getElementById("champTemps").value = film.Runtime;
+    document.getElementById("champType").value = film.Type;
+    document.getElementById("champPays").value = film.Country;
+
     modale.classList.remove("hidden");
-    document.getElementById("champOeuvreId").value = imdbID;
   } catch (err) {
     console.error("Erreur lors du chargement des détails:", err);
   }
 }
+
 
 modaleFermee.onclick = () => modale.classList.add("hidden");
 window.onclick = (e) => {

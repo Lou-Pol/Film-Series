@@ -10,31 +10,55 @@ if (!isset($_SESSION['utilisateur_id'])) {
 $id_utilisateur = $_SESSION['utilisateur_id'];
 $message = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_oeuvre'])) {
-    $id_oeuvre = $_POST['id_oeuvre'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'], $_POST['annee'], $_POST['temps'], $_POST['type'])) {
+    $titre = trim($_POST['titre']);
+    $annee = trim($_POST['annee']);
+    $temps = trim($_POST['temps']);
+    $type = trim($_POST['type']); 
+    $pays = isset($_POST['pays']) ? trim($_POST['pays']) : '';
 
+    // Vérifie si existe déjà
+    $stmt = $db->prepare("SELECT Id FROM Oeuvre WHERE Titre = ? AND Annee = ? AND TypeOeuvre = ?");
+    $stmt->execute([$titre, $annee, $type]);
+    $oeuvre = $stmt->fetch();
+
+    if ($oeuvre) {
+        $id_oeuvre = $oeuvre['Id'];
+    } 
+    else {
+        
+        $insert = $db->prepare("INSERT INTO Oeuvre (Titre, Annee, Temps, TypeOeuvre, Pays) VALUES (?, ?, ?, ?, ?)");
+        $insert->execute([$titre, $annee, $temps, $type, $pays]); 
+
+        $id_oeuvre = $db->lastInsertId();
+    }
+
+    // verif si déjà favoris
     $verif = $db->prepare("SELECT * FROM Utilisateur_Favori WHERE IdUtilisateur = ? AND IdOeuvre = ?");
     $verif->execute([$id_utilisateur, $id_oeuvre]);
 
     if ($verif->fetch()) {
+        
         $suppr = $db->prepare("DELETE FROM Utilisateur_Favori WHERE IdUtilisateur = ? AND IdOeuvre = ?");
         $suppr->execute([$id_utilisateur, $id_oeuvre]);
-        $message = "Œuvre retirée des favoris.";
-    } else {
+        $message = "Oeuvre retirée des favoris.";
+    } 
+    else {
         $ajout = $db->prepare("INSERT INTO Utilisateur_Favori (IdUtilisateur, IdOeuvre) VALUES (?, ?)");
         $ajout->execute([$id_utilisateur, $id_oeuvre]);
-        $message = "Œuvre ajoutée aux favoris.";
+        $message = "Oeuvre ajoutée aux favoris.";
     }
 }
 
-$requete = $db->prepare("
+// recup favoris
+$stmt = $db->prepare("
     SELECT Oeuvre.*
-    FROM Oeuvre
-    JOIN Utilisateur_Favori ON Oeuvre.Id = Utilisateur_Favori.IdOeuvre
+    FROM Utilisateur_Favori
+    JOIN Oeuvre ON Oeuvre.Id = Utilisateur_Favori.IdOeuvre
     WHERE Utilisateur_Favori.IdUtilisateur = ?
 ");
-$requete->execute([$id_utilisateur]);
-$liste_favoris = $requete->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute([$id_utilisateur]);
+$favoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -45,19 +69,22 @@ $liste_favoris = $requete->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-favoris">
-
   <h2 style="text-align:center;">Mes favoris</h2>
 
   <?php if (!empty($message)) echo "<p style='color:green; text-align:center;'>$message</p>"; ?>
 
-  <?php if (count($liste_favoris) > 0): ?>
-    <?php foreach ($liste_favoris as $oeuvre): ?>
+  <?php if (count($favoris) > 0): ?>
+    <?php foreach ($favoris as $oeuvre): ?>
       <div class="favori-item">
         <h3><?= htmlspecialchars($oeuvre['Titre']) ?></h3>
-        <p><?= htmlspecialchars($oeuvre['Annee']) ?> - <?= htmlspecialchars($oeuvre['Type']) ?></p>
+        <p><?= htmlspecialchars($oeuvre['Annee']) ?> - <?= htmlspecialchars($oeuvre['Temps']) ?> - <?= htmlspecialchars($oeuvre['TypeOeuvre']) ?></p>
         <form method="post" action="favoris.php">
-          <input type="hidden" name="id_oeuvre" value="<?= $oeuvre['Id'] ?>">
-          <button type="submit">Supprimer</button>
+          <input type="hidden" name="titre" value="<?= htmlspecialchars($oeuvre['Titre']) ?>">
+          <input type="hidden" name="annee" value="<?= htmlspecialchars($oeuvre['Annee']) ?>">
+          <input type="hidden" name="temps" value="<?= htmlspecialchars($oeuvre['Temps']) ?>">
+          <input type="hidden" name="type" value="<?= htmlspecialchars($oeuvre['TypeOeuvre']) ?>">
+            <input type="hidden" name="pays" value="<?= htmlspecialchars($oeuvre['Pays']) ?>">
+          <button type="submit">Retirer</button>
         </form>
       </div>
     <?php endforeach; ?>
