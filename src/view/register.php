@@ -1,6 +1,6 @@
 <?php
-require_once 'database.php';
-
+session_start();
+require_once __DIR__ . '/../config/database.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $identifiant = $_POST['identifiant'] ?? '';
     $mot_de_passe = $_POST['mot_de_passe'] ?? '';
@@ -31,18 +31,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="UTF-8">
   <title>Inscription</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="page-formulaire">
 
   <div class="formulaire-container">
     <h2>Créer un compte</h2>
-    <form method="post" action="register.php">
+    <form method="post" action="router.php?page=register">
       <input type="text" name="identifiant" placeholder="Identifiant" required>
       <input type="password" name="mot_de_passe" placeholder="Mot de passe" required>
       <input type="submit" value="S'inscrire">
     </form>
-    <p>Déjà un compte ? <a href="login.php">Se connecter</a></p>
+    <p>Déjà un compte ? <a href="router.php?page=login">Se connecter</a></p>
   </div>
 
 </body>

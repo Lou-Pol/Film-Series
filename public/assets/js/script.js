@@ -122,6 +122,8 @@ async function voirDetails(imdbID) {
     
 
     modale.classList.remove("hidden");
+    console.log("Données récupérées :", film);
+console.log("Affichage de la modale...");
   } catch (err) {
     console.error("Erreur lors du chargement des détails:", err);
   }

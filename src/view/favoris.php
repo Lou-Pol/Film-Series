@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once 'database.php';
+require_once __DIR__ . '/../config/database.php';
 
 if (!isset($_SESSION['utilisateur_id'])) {
-    header("Location: login.php");
+    header("Location: router.php?page=login");
     exit();
 }
 
@@ -69,7 +69,7 @@ $favoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="UTF-8">
   <title>Mes Favoris</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="page-favoris">
   <h2 style="text-align:center;">Mes favoris</h2>
@@ -81,7 +81,7 @@ $favoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <div class="favori-item">
         <h3><?= htmlspecialchars($oeuvre['Titre']) ?></h3>
         <p><?= htmlspecialchars($oeuvre['Annee']) ?> - <?= htmlspecialchars($oeuvre['Temps']) ?> - <?= htmlspecialchars($oeuvre['TypeOeuvre']) ?></p>
-        <form method="post" action="favoris.php">
+        <form method="post" action="router.php?page=favoris">
           <input type="hidden" name="titre" value="<?= htmlspecialchars($oeuvre['Titre']) ?>">
           <input type="hidden" name="annee" value="<?= htmlspecialchars($oeuvre['Annee']) ?>">
           <input type="hidden" name="temps" value="<?= htmlspecialchars($oeuvre['Temps']) ?>">
@@ -97,6 +97,6 @@ $favoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <p style="text-align:center;">Vous n'avez pas encore de favoris.</p>
   <?php endif; ?>
 
-  <a class="retour-accueil" href="index.php">Accueil</a>
+  <a class="retour-accueil" href="router.php?page=public">Accueil</a>
 </body>
 </html>

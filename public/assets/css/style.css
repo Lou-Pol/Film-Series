@@ -17,7 +17,6 @@ nav a {
   text-decoration: none;
 }
 .banner {
-  background: url('banner.jpg') center/cover;
   padding: 40px;
   color: white;
 }
