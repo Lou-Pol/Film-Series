@@ -9,7 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
 
         try {
-            $requete = $db->prepare("INSERT INTO Utilisateur (Identifiant, MotDePasse) VALUES (?, ?)");
+            $requete = $db->prepare("INSERT INTO Utilisateur (Identifiant, MotDePasse) 
+                                                 VALUES (?, ?)");
             $succès = $requete->execute([$identifiant, $mot_de_passe_hash]);
 
             if ($succès) {
