@@ -1,13 +1,13 @@
 <?php
 require_once __DIR__ . '/../src/config/config.php';
 
-// Récupérer la page demandée dans l'URL
+// Recup la page demandée dans l'URL
 $page = $_GET['page'] ?? 'home';
 
-// Définir le chemin de base vers les vues
+// chemin de base vers les vues
 $viewPath = __DIR__ . '/../src/view/';
 
-// Redirection selon la valeur de ?page=
+// Redirection en fonction de ?page=
 switch ($page) {
   case 'home':
     include $viewPath . 'home.php';
