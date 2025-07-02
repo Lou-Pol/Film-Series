@@ -10,8 +10,11 @@ if (!isset($_SESSION['utilisateur_id'])) {
 $id_utilisateur = $_SESSION['utilisateur_id'];
 $message = "";
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'], $_POST['annee'], $_POST['temps'], $_POST['type'])) {
-  
     $titre = trim($_POST['titre']);
     $annee = trim($_POST['annee']);
     $temps = trim($_POST['temps']);
