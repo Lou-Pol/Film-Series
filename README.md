@@ -22,29 +22,28 @@ Documentation technique
 - Arborescence du projet
 
 /public
-    /assests 			
-	/css
-	   style.css
-	/js
-	   script.js
-    index.php        
-    router.php              
-
-/src
-    /config
-	/sql
-	   Diagramme_Uml.png
-	   Films_Series.db
-	   Script.sql
-	config.php
-	database.php
-    /sevices
-    /view
-	favoris.php
-        home.php 
-        login.php
-	logout.php
-        register.php
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/assets 			
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/css
+	   <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style.css
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/js
+	   <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;script.js
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index.php
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;router.php
+<br>/src
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/config
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/sql
+	   <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Diagramme_Uml.png
+	   <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Films_Series.db
+	   <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Script.sql
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;config.php
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;database.php
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/sevices
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/view
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;favoris.php
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home.php 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;login.php
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logout.php
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;register.php
     
 2/ Installation
 
