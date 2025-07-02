@@ -69,6 +69,7 @@ Documentation technique
 3/ Base de données
 
 Schéma de la base de données
+
 		--> Une table Utilisateur avec Id, identifiant et motdepasse
 		--> Une table Personne avec Id, Nom, Prenom
 		--> Une table Langue avec Id, NomLangue 
@@ -81,6 +82,8 @@ Schéma de la base de données
 		--> Une table Oeuvre_Appreciation avec IdOeuvre de la table Oeuvre, IdAppreciation de la table Appreciation
 		--> Une table Utilisateur_Favori avec IdOeuvre de la table Oeuvre, IdUtilisateur de la table Utilisateur
 
+
+src/config/sql/Diagramme_Uml.png
 4/ Flux de données
 
 - Exemple d'un appel à OMDB 
