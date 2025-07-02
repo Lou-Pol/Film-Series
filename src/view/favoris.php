@@ -24,7 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'], $_POST['anne
     $description = $_POST['description'];
 
     // verif si existe déjà
-    $stmt = $db->prepare("SELECT Id FROM Oeuvre WHERE Titre = ? AND Annee = ? AND TypeOeuvre = ?");
+    $stmt = $db->prepare("SELECT Id 
+                                FROM Oeuvre 
+                                      WHERE Titre = ? 
+                                      AND Annee = ? 
+                                      AND TypeOeuvre = ?");
     $stmt->execute([$titre, $annee, $type]);
     $oeuvre = $stmt->fetch();
 
@@ -41,12 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'], $_POST['anne
     }
 
     // verif si déjà favoris
-    $verif = $db->prepare("SELECT * FROM Utilisateur_Favori WHERE IdUtilisateur = ? AND IdOeuvre = ?");
+    $verif = $db->prepare("SELECT * FROM Utilisateur_Favori 
+                                        WHERE IdUtilisateur = ? 
+                                        AND IdOeuvre = ?");
     $verif->execute([$id_utilisateur, $id_oeuvre]);
 
     if ($verif->fetch()) {
         
-        $suppr = $db->prepare("DELETE FROM Utilisateur_Favori WHERE IdUtilisateur = ? AND IdOeuvre = ?");
+        $suppr = $db->prepare("DELETE FROM Utilisateur_Favori 
+                                          WHERE IdUtilisateur = ? 
+                                          AND IdOeuvre = ?");
         $suppr->execute([$id_utilisateur, $id_oeuvre]);
         $message = "Oeuvre retirée des favoris.";
     } 
@@ -60,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre'], $_POST['anne
 // recup favoris
 $stmt = $db->prepare("
     SELECT Oeuvre.*
-    FROM Utilisateur_Favori
-    JOIN Oeuvre ON Oeuvre.Id = Utilisateur_Favori.IdOeuvre
-    WHERE Utilisateur_Favori.IdUtilisateur = ?
+          FROM Utilisateur_Favori
+              JOIN Oeuvre ON Oeuvre.Id = Utilisateur_Favori.IdOeuvre
+                   WHERE Utilisateur_Favori.IdUtilisateur = ?
 ");
 $stmt->execute([$id_utilisateur]);
 $favoris = $stmt->fetchAll(PDO::FETCH_ASSOC);

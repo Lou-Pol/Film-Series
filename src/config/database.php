@@ -1,13 +1,13 @@
 <?php
-require_once __DIR__ . '/../../vendor/autoload.php'; // charge Dotenv
+require_once __DIR__ . '/../../vendor/autoload.php'; 
 
 use Dotenv\Dotenv;
 
-// Charge les variables d’environnement
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../..'); // adapte si ton .env est à la racine du projet
+// Charge variables d’environnement
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../..'); 
 $dotenv->load();
 
-// Convertit le chemin relatif en absolu
+// Chemin relatif -->  absolu
 $relativePath = $_ENV['DB_PATH'] ?? 'src/config/sql/Films_Series.db';
 $absolutePath = realpath(__DIR__ . '/../../' . $relativePath);
 

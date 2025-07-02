@@ -7,21 +7,18 @@
 <div id="catalogue" class="conteneur-carre"></div>
 <div id="pagination"></div>
 
-<!-- Modale d'informations -->
+<!-- modale du film -->
 <div id="modale" class="modale hidden">
   <div class="contenu-modale">
-    <!-- Ces champs doivent être présents pour JS même sans session -->
-    
-
     <?php if (isset($_SESSION['utilisateur_id'])): ?>
       <form method="post" action="router.php?page=favoris" id="formulaireFavori">
-<input type="hidden" name="titre" id="champTitre" />
-    <input type="hidden" name="annee" id="champAnnee" />
-    <input type="hidden" name="temps" id="champTemps" />
-    <input type="hidden" name="type" id="champType" />
-    <input type="hidden" name="pays" id="champPays" />
-    <input type="hidden" name="affiche" id="champAffiche" />
-    <input type="hidden" name="description" id="champDescription" />
+        <input type="hidden" name="titre" id="champTitre" />
+        <input type="hidden" name="annee" id="champAnnee" />
+        <input type="hidden" name="temps" id="champTemps" />
+        <input type="hidden" name="type" id="champType" />
+        <input type="hidden" name="pays" id="champPays" />
+        <input type="hidden" name="affiche" id="champAffiche" />
+        <input type="hidden" name="description" id="champDescription" />
         <button type="submit" id="boutonFavori">Ajouter / Retirer des favoris</button>
       </form>
     <?php endif; ?>
