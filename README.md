@@ -83,7 +83,7 @@ Schéma de la base de données
 		--> Une table Utilisateur_Favori avec IdOeuvre de la table Oeuvre, IdUtilisateur de la table Utilisateur
 
 
-src/config/sql/Diagramme_Uml.png
+![Schéma de la BDD](src/config/sql/Diagramme_Uml.png)
 4/ Flux de données
 
 - Exemple d'un appel à OMDB 
