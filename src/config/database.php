@@ -7,7 +7,7 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../..'); 
 $dotenv->load();
 
-// Chemin relatif -->  absolu
+// Chemin relatif --> absolu
 $relativePath = $_ENV['DB_PATH'] ?? 'src/config/sql/Films_Series.db';
 $absolutePath = realpath(__DIR__ . '/../../' . $relativePath);
 
