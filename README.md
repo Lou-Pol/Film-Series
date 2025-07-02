@@ -69,7 +69,7 @@ Documentation technique
 3/ Base de données
 
 Schéma de la base de données
-
+src/config/sql/Diagramme_Uml.png
 		--> Une table Utilisateur avec Id, identifiant et motdepasse
 		--> Une table Personne avec Id, Nom, Prenom
 		--> Une table Langue avec Id, NomLangue 
