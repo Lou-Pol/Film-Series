@@ -81,7 +81,6 @@ Schéma de la base de données
 		--> Une table Oeuvre_Appreciation avec IdOeuvre de la table Oeuvre, IdAppreciation de la table Appreciation
 		--> Une table Utilisateur_Favori avec IdOeuvre de la table Oeuvre, IdUtilisateur de la table Utilisateur
 
-Schéma de la base (src/config/sql/Diagramme_Uml.png)
 4/ Flux de données
 
 - Exemple d'un appel à OMDB 
